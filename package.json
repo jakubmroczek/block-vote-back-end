@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -e js,graphql -w . -w .env index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test jest",
+    "coverage": "jest --coverage",
     "#lint-fix": "Runs ESLint on all relevant files with auto-fixing",
     "lint-fix": "eslint . --ext js,jsx --ignore-pattern public --fix"
   },
@@ -28,6 +29,7 @@
     "generate-password": "^1.5.1",
     "google-auth-library": "^2.0.2",
     "graphql": "^14.2.1",
+    "jest": "^26.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.20",
