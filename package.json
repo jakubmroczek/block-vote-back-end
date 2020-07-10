@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/jakubmroczek/voting-app-administrator-panel#readme",
   "dependencies": {
-    "apollo-server-express": "^2.13.1",
+    "apollo-server-express": "^2.14.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^6.2.0",
