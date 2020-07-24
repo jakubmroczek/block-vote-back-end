@@ -26,8 +26,7 @@ module.exports = class {
           {
             name: ethereumCandidates[i].name,
             surname: ethereumCandidates[i].surname,
-            id: ethereumCandidates[i].id,
-            index: i,
+            votes: ethereumCandidates[i].votes,
           },
         );
       }
@@ -35,7 +34,9 @@ module.exports = class {
     });
 
     const title = await contract.methods.getTitle().call((err, titleStr) => titleStr);
+    const numberOfCastedVotes = await contract.methods.getNumberOfCastedVotes().call((err, result) => result);
+    const numberOfEligibleVoters = await contract.methods.getNumberOfEligibleVoters().call((err, result) => result);
 
-    return new ElectionSmartContract(address, title, candidates);
+    return new ElectionSmartContract(address, title, candidates, numberOfCastedVotes, numberOfEligibleVoters);
   }
 };

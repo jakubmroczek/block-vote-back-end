@@ -95,6 +95,8 @@ type Mutation {
 
     startPublicKeyRegistration : Boolean!
 
+    startElection(address: String!) : Boolean!
+
     compileElectionSmartContract : Boolean!
 
     finishElection : Boolean!

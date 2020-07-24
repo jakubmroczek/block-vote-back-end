@@ -19,7 +19,8 @@ module.exports = (() => {
 
     frontend: {
       server: {
-        url: process.env.UI_VOTING_ENDPOINT,
+        registrationEndpointURL: process.env.FRONT_END_SERVER_REGISTRATION_ENDPOINT,
+        votingEndpointURL: process.env.FRONT_END_SERVER_VOTING_ENDPOINT,
       },
     },
 

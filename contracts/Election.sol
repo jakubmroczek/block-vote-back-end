@@ -42,6 +42,7 @@ contract Election {
 
   function vote(uint index) public  registeredVoter voterDidNotVote {
       m_candidates[index].votes++;
+      m_numberOfCastedVotes++;
       voterVoted(msg.sender);
   }
 
@@ -53,16 +54,24 @@ contract Election {
     return  m_title;
   }
 
+  function getNumberOfCastedVotes() public view returns(uint) {
+    return m_numberOfCastedVotes;
+  }
+
+  function getNumberOfEligibleVoters() public view returns(uint) {
+    return m_numberOfEligibleVoters;
+  }
+
   //TODO: Try use automatic getter
  Candidate[] public m_candidates;
  address[] m_registeredVoters;
  mapping(address => bool) m_registeredVotersWhoVoted;
  //TODO: Try use automatic getter
  string m_title;
+ uint m_numberOfCastedVotes;
+ uint m_numberOfEligibleVoters;
 
   constructor(string memory title, CandidateInput[] memory candidates, address[] memory registeredVoters) public {
-    m_title = title;
-
     //TODO: Try optimize the ehter here
     for (uint i = 0; i < candidates.length; i++) {
       // 0 as no one has any votes at the beginning
@@ -73,6 +82,10 @@ contract Election {
       //TODO: Try optimize the ehter here
     m_registeredVoters.push(registeredVoters[i]);
     }
+
+    m_title = title;
+
+    m_numberOfEligibleVoters = registeredVoters.length;
   }
 
   function voterVoted(address voter) private {
