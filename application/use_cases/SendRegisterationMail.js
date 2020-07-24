@@ -5,10 +5,11 @@ const htmlTemplate = (userMail, electionTitle, link, secretToken) => `
      <p>
       Dear Sir or Madam,<br>    
       The user, whose email address is ${userMail}, invites you to register in the election "${electionTitle}".<br>    
-      To register, please go to the <a href="${link}">page</a> and follow the instructions.<br>    
+      To register, please go to the <a href="${link}">page</a> and follow the instructions.<br> 
       <br>    
       Your secret token is: "${secretToken}".<br>    
-      Please, do not share it with anyone.<br>    
+      Please, do not share it with anyone.<br>
+      You will be notified when the election starts with another mail message.<br>
       <br>    
       ---------------<br>
       Yours sincerely,<br>
@@ -22,7 +23,7 @@ module.exports = async (userMail, electionID, { electionRepository }) => {
 
   const { id: _id, title, participants, secretTokens } = election;
 
-  const link = environment.frontend.server.url + _id;
+  const link = environment.frontend.server.registrationEndpointURL + '/' + _id;
 
   if (participants.length !== secretTokens.length) {
     // TODO: Handle the error if there is not enough public keys

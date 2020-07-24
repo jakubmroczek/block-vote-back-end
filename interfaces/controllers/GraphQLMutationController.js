@@ -6,6 +6,7 @@ const StartPublicKeyRegistration = require('../../application/use_cases/StartPub
 const CompileElectionSmartContract = require('../../application/use_cases/CompileElectionSmartContract.js');
 const FinishElection = require('../../application/use_cases/FinishElection.js');
 const SendRegisterationMail = require('../../application/use_cases/SendRegisterationMail.js');
+const SendElectionStartMails = require('../../application/use_cases/SendElectionStartMails.js');
 const GetUserElection = require('../../application/use_cases/GetUserElection.js');
 const { mustBeSignedIn, mustOwnElection } = require('../../infrastructure/security/GraphQLAuthentication.js');
 
@@ -38,6 +39,22 @@ async function _startPublicKeyRegistration(_1, _2, { user, serviceLocator }) {
   return true;
 }
 
+async function _startElection(_1, { address }, { user, serviceLocator }) {
+  const election = await GetUserElection(user, serviceLocator);
+  const { id, smartContract } = election;
+
+  smartContract.address = address;
+  // TODO: Magic strings, keep this in a one place.
+  const changes = { status: 'Deployed', smartContract };
+
+  // TODO: Introduce try-catch error handling
+  await UpdateElection(id, changes, serviceLocator);
+  await SendElectionStartMails(id, serviceLocator);
+
+  // TODO: Error handling;
+  return true;
+}
+
 async function _compileElectionSmartContract(_1, _2, { user, serviceLocator }) {
   const election = await GetUserElection(user, serviceLocator);
   const { id } = election;
@@ -59,6 +76,7 @@ module.exports = {
   updateElection: mustBeSignedIn(mustOwnElection(_updateElection)),
   registerPublicKey: _registerPublicKey,
   startPublicKeyRegistration: mustBeSignedIn(_startPublicKeyRegistration),
+  startElection: mustBeSignedIn(_startElection),
   compileElectionSmartContract: mustBeSignedIn(_compileElectionSmartContract),
   finishElection: mustBeSignedIn(_finishElection),
 };
