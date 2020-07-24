@@ -57,7 +57,7 @@ module.exports = async (user, { userRepository, voterRepository, electionReposit
   const { candidates } = electionSmartContract;
   
   // TODO: Returns nothig, improve error hanlding
-  await SendFinishMail(electionID, candidates, { electionRepository });
+  await SendFinishMail(email, electionID, candidates, { electionRepository });
 
   return true;
 };
