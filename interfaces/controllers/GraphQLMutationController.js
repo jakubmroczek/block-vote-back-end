@@ -27,11 +27,13 @@ async function _registerPublicKey(_1, { id, secretToken, publicKey }, { serviceL
 
 async function _startPublicKeyRegistration(_1, _2, { user, serviceLocator }) {
   const election = await GetUserElection(user, serviceLocator);
+  
+  const { email } = user;
   const { id } = election;
   
   // TODO: Error handling
   await StartPublicKeyRegistration(id, serviceLocator);
-  await SendRegisterationMail(id, serviceLocator);
+  await SendRegisterationMail(email, id, serviceLocator);
 
   return true;
 }
