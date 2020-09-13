@@ -14,7 +14,6 @@ const _template = (title) => {
     BlockVote, Ethereum-based voting application.`;
 }
 
-// TODO: Get the candidates from the different repo or different use case.
 module.exports = async (electionID, { electionRepository }) => {
   const election = await electionRepository.get(electionID);
   const { title, participants } = election;
@@ -26,6 +25,5 @@ module.exports = async (electionID, { electionRepository }) => {
     await SendMail(p.email, subject, html);
   });
 
-  // TODO; Error handling
   return true;
 };

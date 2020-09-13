@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-// TODO: Get this from the evnironment
 const { JWT_SECRET } = process.env;
 
 module.exports = class  {

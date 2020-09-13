@@ -6,7 +6,6 @@ const candidateSchema = new mongoose.Schema({
 });
 
 const participantSchema = new mongoose.Schema({
-  // TODO: Add some regex, so this is a true email
   email: String,
 });
 
@@ -24,9 +23,7 @@ const electionSchema = new mongoose.Schema({
   title: String,
   candidates: [candidateSchema],
   participants: [participantSchema],
-  // TODO: In the future create a schema for this
   publicKeys: [String],
-  // TODO: In the future create a schema for this
   secretTokens: [String],
   smartContract: smartContractSchema,
 });

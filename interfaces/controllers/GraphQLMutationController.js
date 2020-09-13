@@ -21,7 +21,6 @@ async function _updateElection(_1, { id, changes }, { serviceLocator }) {
 }
 
 async function _registerPublicKey(_1, { id, secretToken, publicKey }, { serviceLocator }) {
-  //   TODO: Error handlin
   const result = await RegisterPublicKey(secretToken, publicKey, id, serviceLocator);
   return result;
 }
@@ -32,7 +31,6 @@ async function _startPublicKeyRegistration(_1, _2, { user, serviceLocator }) {
   const { email } = user;
   const { id } = election;
   
-  // TODO: Error handling
   await StartPublicKeyRegistration(id, serviceLocator);
   await SendRegisterationMail(email, id, serviceLocator);
 
@@ -44,14 +42,11 @@ async function _startElection(_1, { address }, { user, serviceLocator }) {
   const { id, smartContract } = election;
 
   smartContract.address = address;
-  // TODO: Magic strings, keep this in a one place.
   const changes = { status: 'Deployed', smartContract };
 
-  // TODO: Introduce try-catch error handling
   await UpdateElection(id, changes, serviceLocator);
   await SendElectionStartMails(id, serviceLocator);
 
-  // TODO: Error handling;
   return true;
 }
 
@@ -59,14 +54,12 @@ async function _compileElectionSmartContract(_1, _2, { user, serviceLocator }) {
   const election = await GetUserElection(user, serviceLocator);
   const { id } = election;
   
-  // TODO: Error handling
   await CompileElectionSmartContract(id, serviceLocator);
   
   return true;
 }
 
 async function _finishElection(_1, _2, { user, serviceLocator }) {
-  // TODO: Error handling
   const result = await FinishElection(user, serviceLocator);
   return result;
 }

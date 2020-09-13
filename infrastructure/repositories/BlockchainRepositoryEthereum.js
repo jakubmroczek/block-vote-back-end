@@ -4,12 +4,9 @@ const environment = require('../config/environment.js');
 const ElectionSmartContract = require('../../domain/ElectionSmartContract.js');
 
 module.exports = class {
-  // TODO: should abi belong here? should not we redesing it?
-  // abi is unparsed
   async findByAddress(address, abi) {
     let httpProviderURL = environment.blockchain.httpProvider.url;
     
-    // TODO: Remove this, or how to handle this
     if (httpProviderURL === undefined) {
       httpProviderURL = 'http://localhost:8545';
     }

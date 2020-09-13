@@ -18,7 +18,6 @@ const _template = (title, userMail, candidates) => {
   `;
 }
 
-// TODO: Get the candidates from the different repo or different use case.
 module.exports = async (userMail, electionID, candidates, { electionRepository }) => {
   const election = await electionRepository.get(electionID);
   const { title, participants } = election;
@@ -30,6 +29,5 @@ module.exports = async (userMail, electionID, candidates, { electionRepository }
     await SendMail(p.email, subject, html);
   });
 
-  // TODO; Error handling
   return true;
 };

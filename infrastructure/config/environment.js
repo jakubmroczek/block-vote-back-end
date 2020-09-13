@@ -1,10 +1,6 @@
 require('dotenv').config();
 const constants = require('./constants');
 
-/**
- * This module centralize all the environment variables of the application. Thanks to this module, there MUST NOT be any
- * `process.env` instruction in any other file or module.
- */
 module.exports = (() => {
   const environment = {
     database: {
@@ -36,13 +32,6 @@ module.exports = (() => {
       },
     },
   };
-
-  if (process.env.NODE_ENV === 'test') {
-    // TODO: Looks that I deleted the IN_MEMORY db
-    environment.database = {
-      driver: constants.SUPPORTED_DATABASE.IN_MEMORY,
-    };
-  }
 
   return environment;
 })();

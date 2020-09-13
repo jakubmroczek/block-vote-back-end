@@ -19,10 +19,8 @@ const mailTemplate = (to, subject, html) => ({
 function sendEmail(mailOptions) {
   transporter.sendMail(mailOptions, (error /* info */) => {
     if (error) {
-      // TOOD: Logging
       return false;
     }
-    // TOOD: Logging
     return true;
   });
 }
@@ -31,6 +29,5 @@ module.exports = async (to, subject, content) => {
   const mail = mailTemplate(to, subject, content);
   sendEmail(mail);
 
-  // TODO; Error handling
   return true;
 };

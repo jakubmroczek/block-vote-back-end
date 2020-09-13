@@ -1,7 +1,6 @@
 const mongoose = require('../mongoose');
 
 const voterSchema = new mongoose.Schema({
-  // TODO: Investigate introducting own type, remember that it is normalized by toLowerCase()
   publicKey: {
     type: String,
     lowercase: true,
@@ -13,7 +12,6 @@ const voterSchema = new mongoose.Schema({
     },
     required: [true, 'Public key is required'],
   },
-  // TODO: Check if I can provide different type here [ID!]!
   electionIDs: [String],
 });
 

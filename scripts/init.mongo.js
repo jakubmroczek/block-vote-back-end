@@ -57,6 +57,5 @@ const insertedElection = db.elections.insertOne(election);
 const electionsCount = db.elections.count();
 print('Inserted', electionsCount, 'elections');
 
-// TODO: Index on election?
 
 db.users.updateOne({ username: 'jakubmroczek2@gmail.com' }, { $push: { elections: insertedElection.insertedId } });

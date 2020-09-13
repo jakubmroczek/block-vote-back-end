@@ -29,7 +29,6 @@ const secretTokenScalarType = new GraphQLScalarType({
   description: 'Secret token, unique for each election\'s participant, allowing them to register their Ethereum public key',
   serialize(value) { return String(value); },
   parseValue(value) {
-    //TODO 32 use it from constnats
     const regex = RegExp('^[a-zA-Z0-9]{32}$');
     if (regex.test(value)) {
       return value;

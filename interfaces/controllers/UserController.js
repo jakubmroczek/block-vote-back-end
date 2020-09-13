@@ -8,7 +8,6 @@ module.exports = {
 
     const user = await CreateUser(email, serviceLocator);
 
-    // TODO: Should I use GraphQL here?
     return serviceLocator.userSerializer.serialize(user);
   },
 

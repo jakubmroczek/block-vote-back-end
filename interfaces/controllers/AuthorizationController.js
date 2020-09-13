@@ -4,7 +4,6 @@ const GetAccessToken = require('../../application/use_cases/GetAccessToken.js');
 const VerifyGoogleOAuth2Token = require('../../application/use_cases/VerifyGoogleOAuth2Token.js');
 const VerifyAccessToken = require('../../application/use_cases/VerifyAccessToken.js');
 
-//TODO: Make this a use-case
 // eslint-disable-next-line no-underscore-dangle
 function _getUser(request, serviceLocator) {
   const token = request.cookies.jwt;

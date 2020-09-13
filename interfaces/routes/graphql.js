@@ -4,7 +4,6 @@ const environment = require('../../infrastructure/config/environment.js');
 const { publicKeyScalarType, secretTokenScalarType } = require('./types/scalarTypes.js');
 const VerifyAccessToken = require('../../application/use_cases/VerifyAccessToken.js');
 
-// TODO: Move this to the controllers
 const GraphQLQuery = require('../controllers/GraphQLQueryController.js');
 const GraphQLMutation = require('../controllers/GraphQLMutationController.js');
 
@@ -13,7 +12,6 @@ function getContext({ req }) {
   const { serviceLocator } = req.app;
 
   if (!token) {
-    // TODO: Maybe I should throw exception here
     return { isLoggedIn: false, serviceLocator };
   }
 
@@ -21,8 +19,6 @@ function getContext({ req }) {
     const user = VerifyAccessToken(token, serviceLocator);
     return { user, serviceLocator };
   } catch (error) {
-    // TODO: Maybe I should throw exception here
-    // TODO: How should I handle this errror, ?
     return { isLoggedIn: false };
   }
 }

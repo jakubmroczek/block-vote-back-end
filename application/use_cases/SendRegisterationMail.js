@@ -18,7 +18,6 @@ const htmlTemplate = (userMail, electionTitle, link, secretToken) => `
 `;
 
 module.exports = async (userMail, electionID, { electionRepository }) => {
-  // TODO: Error handlind
   const election = await electionRepository.get(electionID);
 
   const { id: _id, title, participants, secretTokens } = election;
@@ -26,7 +25,6 @@ module.exports = async (userMail, electionID, { electionRepository }) => {
   const link = environment.frontend.server.registrationEndpointURL + '/' + _id;
 
   if (participants.length !== secretTokens.length) {
-    // TODO: Handle the error if there is not enough public keys
     throw 'Not enough secret tokens generated for the public key';
   }
 
@@ -41,6 +39,5 @@ module.exports = async (userMail, electionID, { electionRepository }) => {
     await SendMail(email, subject, html);
   }
 
-  // TODO: Fix this, introducde better erorr handling
   return true;
 };

@@ -1,7 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
-// TODO: Export this an an anonymous function
 const GraphQL = require('../../interfaces/routes/graphql.js');
 const Authorization = require('../../interfaces/routes/authorization.js');
 
